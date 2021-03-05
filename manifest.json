@@ -50,9 +50,7 @@
             /* ios打包配置 */
             "ios" : {},
             /* SDK配置 */
-            "sdkConfigs" : {
-                "ad" : {}
-            },
+            "sdkConfigs" : {},
             "icons" : {
                 "android" : {
                     "hdpi" : "C:/Users/HP/Desktop/exchange.png",
@@ -146,5 +144,12 @@
     },
     "uniStatistics" : {
         "enable" : false
+    },
+    "h5" : {
+        "title" : "交换选项",
+        "router" : {
+            "mode" : "history"
+        },
+        "domain" : "47.100.38.27"
     }
 }

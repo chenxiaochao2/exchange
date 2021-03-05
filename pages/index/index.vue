@@ -1,7 +1,7 @@
 <template>
 	<view class="content">
 		<view class="item_list" id="itemList" ref="itemList">
-			<view :class="[status1==1?'item aimon':status1==2?'item aimin':'item']" :style="{top:top1}" ref="drog1" id="drog1" @touchmove="e=>mousemove(e,1)"
+			<view :class="[status1==1?'item aimon':status1==2?'item aimin':'item']" :style="{top:top1}" ref="drog1" id="drog1" @touchmove.prevent="e=>mousemove(e,1)"
 			 @touchend="loose(1)" @touchstart="e=>drog(e,1)">
 				<view class="circle">
 					{{tmpPosition.index1}}
@@ -13,7 +13,7 @@
 					<!-- <image class="img" src="../../static/line_icon.png" mode=""></image> -->
 				</view>
 			</view>
-			<view :class="[status2==1?'item aimon':status2==2?'item aimin':'item']" :style="{top:top2}" ref="drog2" id="drog2" @touchmove="e=>mousemove(e,2)"
+			<view :class="[status2==1?'item aimon':status2==2?'item aimin':'item']" :style="{top:top2}" ref="drog2" id="drog2" @touchmove.prevent="e=>mousemove(e,2)"
 			 @touchend="loose(2)" @touchstart="e=>drog(e,2)">
 				<view class="circle">
 					{{tmpPosition.index2}}
@@ -25,7 +25,7 @@
 					<!-- <image class="img" src="../../static/line_icon.png" mode=""></image> -->
 				</view>
 			</view>
-			<view :class="[status3==1?'item aimon':status3==2?'item aimin':'item']" :style="{top:top3}" ref="drog3" id="drog3" @touchmove="e=>mousemove(e,3)"
+			<view :class="[status3==1?'item aimon':status3==2?'item aimin':'item']" :style="{top:top3}" ref="drog3" id="drog3" @touchmove.prevent="e=>mousemove(e,3)"
 			 @touchend="loose(3)" @touchstart="e=>drog(e,3)">
 				<view class="circle">
 					{{tmpPosition.index3}}
@@ -37,7 +37,7 @@
 					<!-- <image class="img" src="../../static/line_icon.png" mode=""></image> -->
 				</view>
 			</view>
-			<view :class="[status4==1?'item aimon':status4==2?'item aimin':'item']" :style="{top:top4}" ref="drog4" id="drog4" @touchmove="e=>mousemove(e,4)"
+			<view :class="[status4==1?'item aimon':status4==2?'item aimin':'item']" :style="{top:top4}" ref="drog4" id="drog4" @touchmove.prevent="e=>mousemove(e,4)"
 			 @touchend="loose(4)" @touchstart="e=>drog(e,4)">
 				<view class="circle">
 					{{tmpPosition.index4}}
@@ -214,14 +214,14 @@
 	}
 </script>
 
-<style>
+<style lang="scss">
 	.content {
 		display: flex;
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
 		background-color: #F1F1F1;
-		position: absolute;
+		position: fixed;
 		top: 0;
 		bottom: 0;
 		left: 0;
@@ -233,7 +233,7 @@
 		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		width: 750rpx;
+		width: 100%;
 		position: absolute;
 		top: 100rpx;
 		left: 0;
@@ -241,7 +241,7 @@
 		background-color: #FFFFFF;
 	}
 	.text{
-		width: 540rpx;
+		width: calc(100% - 200rpx);
 	}
 
 	#drog1 {
