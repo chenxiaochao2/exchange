@@ -82,6 +82,27 @@
 				top4: '150px',
 			}
 		},
+		created(){
+			try {
+			    const value = uni.getStorageSync('myData');
+				console.log(value,'value')
+			    if (value) {
+			        this.tmpPosition = JSON.parse(value);
+			        this.position = [
+			        	Number(this.tmpPosition.index1),
+			        	Number(this.tmpPosition.index2),
+			        	Number(this.tmpPosition.index3),
+			        	Number(this.tmpPosition.index4), 
+			        ]
+			        this.top1 = (this.position[0] - 1) * 50 + 'px';
+			        this.top2 = (this.position[1] - 1) * 50 + 'px';
+			        this.top3 = (this.position[2] - 1) * 50 + 'px';
+			        this.top4 = (this.position[3] - 1) * 50 + 'px';;
+			    }
+			} catch (e) { 
+				console.error('错误：' + e.toString())
+			}
+		},
 		onLoad() {
 
 		},
@@ -134,9 +155,13 @@
 				if (typeof window !== 'undefined') { 
 					document.getElementById('drog' + index).style.top = (this.position[index - 1] - 1) * _height + 'px';
 				} else {
-					console.log(this.position,'this.position')
-					console.log('top' + index,(this.position[index - 1] - 1) * _height,'=========')
 					this['top' + index] = (this.position[index - 1] - 1) * _height + 'px';
+				}
+				let stringData = JSON.stringify(this.tmpPosition)
+				try {
+				    uni.setStorageSync('myData', stringData);
+				} catch (e) { 
+				    console.error('错误：' + e.toString(this.tmpPosition))
 				}
 				// let _height = document.getElementById('drog1').getBoundingClientRect().height;
 				// let top = document.getElementById('drog' + index).offsetTop;
@@ -241,24 +266,9 @@
 		background-color: #FFFFFF;
 	}
 	.text{
-		width: calc(100% - 200rpx);
+		width: calc(100% - 100px);
 	}
 
-	#drog1 {
-		top: 0;
-	}
-
-	#drog2 {
-		top: 100rpx;
-	}
-
-	#drog3 {
-		top: 200rpx;
-	}
-
-	#drog4 {
-		top: 300rpx;
-	}
 
 	.item {
 		box-sizing: border-box;
@@ -290,11 +300,11 @@
 	}
 
 	.icon {
-		width: 60rpx;
-		height: 60rpx;
-		margin-right: 20rpx;  
+		width: 30px;
+		height: 30px; 
+		margin-right: 10px;  
 		background: url(../../static/line_icons.png);
-		background-size: 60rpx 60rpx;
+		background-size: 30px; 
 	}
 	
 	.aimin .icon{
@@ -305,9 +315,9 @@
 	}
 
 	.item .circle {
-		margin-left: 20rpx;
-		width: 60rpx;
-		height: 60rpx;
+		margin-left: 10px;
+		width: 28px;
+		height: 28px;
 		border-radius: 50%;
 		background-color: #007AFF;
 		display: flex;
@@ -318,8 +328,8 @@
 
 
 	.icon .img {
-		width: 60rpx;
-		height: 60rpx;
+		width: 30px;
+		height: 30px;
 	}
 
 	.text-area {

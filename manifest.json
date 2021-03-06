@@ -148,7 +148,13 @@
     "h5" : {
         "title" : "交换选项",
         "router" : {
-            "mode" : "history"
+            "mode" : "history",
+            "base" : ""
+        },
+        "optimization" : {
+            "treeShaking" : {
+                "enable" : true
+            }
         },
         "domain" : "47.100.38.27"
     }
